@@ -3,7 +3,7 @@ from flask import Flask, request
 # Import Api and Resource modules from flask_restful package
 from flask_restful import Api, Resource, reqparse
 # Import cors module from flask_cors to allow cross origin requests
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 # Import the request arguments schema validation module to validate
 # that the request body follows the required schema
@@ -29,30 +29,31 @@ api = Api(app)
 # class Password(Resource):
   # Define post request for this resource
 @app.route("/password", methods=['POST'])
+@cross_origin()
 def post():
-  if request.method == 'POST':
+  # if request.method == 'POST':
     # Get the arguments or send error
-    args = password_args.parse_args()
+  args = password_args.parse_args()
 
-    # Validate the parameters
-    invalid_request = validate_parameters(args)
+  # Validate the parameters
+  invalid_request = validate_parameters(args)
 
-    # If the request is invalid then return the error as 400 status code
-    if (invalid_request):
-      return { "message": invalid_request }, 400
+  # If the request is invalid then return the error as 400 status code
+  if (invalid_request):
+    return { "message": invalid_request }, 400
 
-    # Call the get password function for the three passwords
-    password1 = generate_password(args, args["first_input"])
-    password2 = generate_password(args, args["second_input"])
-    password3 = generate_password(args, args["third_input"])
+  # Call the get password function for the three passwords
+  password1 = generate_password(args, args["first_input"])
+  password2 = generate_password(args, args["second_input"])
+  password3 = generate_password(args, args["third_input"])
 
-    # Return the passwords
-    return { "data": {
-        "password1": password1,
-        "password2": password2,
-        "password3": password3,
-      }
-    }, 200
+  # Return the passwords
+  return { "data": {
+      "password1": password1,
+      "password2": password2,
+      "password3": password3,
+    }
+  }, 200
 
 # Add the Password resource to the api
 # api.add_resource(Password, "/password")
