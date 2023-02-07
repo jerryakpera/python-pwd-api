@@ -20,7 +20,8 @@ from validate_parameters import validate_parameters
 
 # Create a new flask app
 app = Flask(__name__)
-CORS(app)
+# CORS(app)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 # Initialize our app as a Restful API
 api = Api(app)
 
@@ -60,5 +61,6 @@ def post():
 
 # Start server and flask application
 if __name__ == "__main__":
+  print("Status code: 502")
   # Run application in debug mode
   app.run(debug=True)
