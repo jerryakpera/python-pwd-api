@@ -1,7 +1,7 @@
 # Import Flask module from the flase package
 from flask import Flask, request
 # Import Api and Resource modules from flask_restful package
-from flask_restful import Api, Resource, reqparse
+from flask_restful import Api
 # Import cors module from flask_cors to allow cross origin requests
 from flask_cors import CORS, cross_origin
 
@@ -20,8 +20,7 @@ from validate_parameters import validate_parameters
 
 # Create a new flask app
 app = Flask(__name__)
-# CORS(app)
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app)
 # Initialize our app as a Restful API
 api = Api(app)
 
