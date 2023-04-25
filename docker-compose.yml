@@ -1,0 +1,10 @@
+services:
+  pwd-api:
+    build: .
+    container_name: pwd-api
+    ports:
+      - '5000:5000'
+    volumes:
+      - .:/code
+    # depends_on:
+    #   - redis

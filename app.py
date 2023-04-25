@@ -1,5 +1,5 @@
 # Import Flask module from the flase package
-from flask import Flask, request
+from flask import Flask
 # Import Api and Resource modules from flask_restful package
 from flask_restful import Api
 # Import cors module from flask_cors to allow cross origin requests
@@ -24,12 +24,11 @@ CORS(app)
 # Initialize our app as a Restful API
 api = Api(app)
 
-# Create a class that inherits from Resource
-# Resource has methods that allows us to handle GET, PUT, POST and DELETE requests
-# class Password(Resource):
-  # Define post request for this resource
+# /password POST route
 @app.route("/password", methods=['POST'])
+# Handle cross origin errors
 @cross_origin()
+# Define post request for this resource
 def post():
   # if request.method == 'POST':
     # Get the arguments or send error
@@ -44,8 +43,10 @@ def post():
 
   # Call the get password function for the three passwords
   password1 = generate_password(args, args["first_input"])
-  password2 = generate_password(args, args["second_input"])
-  password3 = generate_password(args, args["third_input"])
+  password2 = generate_password(args, args["first_input"])
+  password3 = generate_password(args, args["first_input"])
+  # password2 = generate_password(args, args["second_input"])
+  # password3 = generate_password(args, args["third_input"])
 
   # Return the passwords
   return { "data": {
@@ -54,9 +55,6 @@ def post():
       "password3": password3,
     }
   }, 200
-
-# Add the Password resource to the api
-# api.add_resource(Password, "/password")
 
 # Start server and flask application
 if __name__ == "__main__":
