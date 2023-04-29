@@ -17,4 +17,5 @@ EXPOSE 5000
 
 #This command will start the Python Flask application Docker container
 # CMD ["gunicorn", "app.py"]
-CMD ["gunicorn", "app:app"]
+# CMD ["gunicorn", "app:app"]
+CMD ["python3", "app.py"]
