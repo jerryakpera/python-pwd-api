@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt --no-cache-dir
 COPY . /code
 
 #This command will start the Python Flask application Docker container
-CMD ["gunicorn", "app:app"]
+CMD ["gunicorn", "app:app", ":5000"]
