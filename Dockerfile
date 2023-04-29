@@ -16,5 +16,5 @@ COPY . /code
 EXPOSE 5000
 
 #This command will start the Python Flask application Docker container
-CMD ["gunicorn", "--bind", ":5000", "app:app"]
+CMD ["gunicorn", "--bind", ":5000", "app"]
 # CMD ["gunicorn", "--bind 0.0.0.0:5000", "app:app"]
