@@ -43,10 +43,8 @@ def post():
 
   # Call the get password function for the three passwords
   password1 = generate_password(args, args["first_input"])
-  password2 = generate_password(args, args["first_input"])
-  password3 = generate_password(args, args["first_input"])
-  # password2 = generate_password(args, args["second_input"])
-  # password3 = generate_password(args, args["third_input"])
+  password2 = generate_password(args, args["second_input"])
+  password3 = generate_password(args, args["third_input"])
 
   # Return the passwords
   return { "data": {
