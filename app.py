@@ -24,6 +24,14 @@ CORS(app)
 # Initialize our app as a Restful API
 api = Api(app)
 
+@app.route('/health', methods=['GET'])
+@cross_origin()
+def get():
+  return { "data": {
+      "status": "UP!"
+    }
+  }, 200
+
 # /password POST route
 @app.route("/password", methods=['POST'])
 # Handle cross origin errors
